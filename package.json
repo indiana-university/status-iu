@@ -2,7 +2,9 @@
   "name": "status-iu",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://indiana-university.github.io/status-iu/",
   "dependencies": {
+    "gh-pages": "^2.0.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-scripts": "2.0.3",
@@ -10,6 +12,8 @@
     "rivet-uits": "^1.1.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -b master -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
