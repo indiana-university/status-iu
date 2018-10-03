@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Home, Calendar, Maintenance, Notice, Notices } from './pages'
 
 const App = () => (
-  <Router>
+  <Router basename={process.env.PUBLIC_URL}>
     <React.Fragment>
       <Header title={"Status.IU"} />
       <Route exact path="/" component={Home} />
