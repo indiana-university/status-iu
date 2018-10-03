@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
 import 'rivet-uits/css/rivet.css'
-import { Header, Table } from 'rivet-react'
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
-import { Home, Calendar, Maintenance, Notice, Notices } from './pages'
 
-class App extends Component {
+export class Notice extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
       error: null,
       isLoaded: false,
-      notices: []
+      notice: {}
     };
   }
 
@@ -39,19 +36,11 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-        <React.Fragment>
-          <Header title={"Status.IU"} />
-          <Route exact path="/" component={Home} />
-          <Route path="/notices" component={Notices} />
-          <Route path="/notices/:noticeId" component={Notice} />
-          <Route path="/calendar" component={Calendar} />
-          <Route path="/maintenance" component={Maintenance} />
-        </React.Fragment>
-      </Router>
+      <React.Fragment>
+        <h1>Notice</h1>
+      </React.Fragment>
     );
   }
 }
 
 
-export default App;

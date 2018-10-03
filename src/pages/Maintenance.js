@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import 'rivet-uits/css/rivet.css'
-import { Header, Table } from 'rivet-react'
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
-import { Home, Calendar, Maintenance, Notice, Notices } from './pages'
+import { Table } from 'rivet-react'
 
-class App extends Component {
+export class Maintenance extends Component {
 
   constructor(props) {
     super(props);
@@ -39,19 +37,26 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-        <React.Fragment>
-          <Header title={"Status.IU"} />
-          <Route exact path="/" component={Home} />
-          <Route path="/notices" component={Notices} />
-          <Route path="/notices/:noticeId" component={Notice} />
-          <Route path="/calendar" component={Calendar} />
-          <Route path="/maintenance" component={Maintenance} />
-        </React.Fragment>
-      </Router>
+      <React.Fragment>
+        <Table variant="stripes" cells>
+          <thead>
+          <tr>
+            <th>Greeting</th>
+            <th>Audience</th>
+          </tr>
+          </thead>
+          <tbody>
+          {this.state.notices.map((notice) =>
+            <tr key={notice.id}>
+              <td>{notice.name}</td>
+              <td>{notice.content}</td>
+            </tr>
+          )}
+          </tbody>
+        </Table>
+      </React.Fragment>
     );
   }
 }
 
 
-export default App;
