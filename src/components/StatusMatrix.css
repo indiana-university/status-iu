@@ -1,0 +1,253 @@
+/*--------------------------------------------------------------------
+    Status Matrix
+    _status-matrix.css
+    Status matrix on the homepage
+--------------------------------------------------------------------*/
+.status-matrix__wrapper {
+  margin-bottom: 4em;
+}
+.status-matrix {
+  padding: 1em 0 1.5em 0;
+}
+.status-matrix tr:last-child {
+  border-bottom: none;
+}
+.status-matrix table {
+  margin-bottom: 0;
+  table-layout: fixed;
+}
+.status-matrix a {
+  color: #333;
+  display: block;
+}
+.status-matrix tr {
+
+}
+.status-matrix th {
+  text-align: center;
+  padding: 1em 0 1em .375em;
+}
+.status-matrix--no-group-status th {
+  text-align: left;
+  text-indent: -2em;
+}
+.status-matrix td {
+  border-right: 1px solid #ddd;
+  overflow: hidden;
+  padding-top: .75em;
+  padding-bottom: .75em;
+}
+.status-matrix td:last-child {
+  border-right: none;
+}
+
+.status-matrix__campus {
+  font-weight: 700;
+  font-size: .825em;
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  /* Internet Explorer */
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+.status-matrix__category {
+  position: relative;
+}
+
+/*
+    Absolutely positioned method icons. Giving category and
+    service rss icons different classes for now just incase
+    we need to style differently.
+*/
+.status-matrix__category-rss,
+.status-matrix__service-rss {
+  position: absolute;
+  top: .55em;
+  right: 1.5em;
+  width: 23px;
+  height: 23px;
+  text-align: center;
+  border-radius: 999px;
+  overflow: hidden;
+  background-color: #eee;
+  color: #666;
+  transition: all .3s ease;
+  /*
+      TO-DO: This may not be the best solution for creating these
+      round RSS icons. We may need to revisit. Using a little bit of
+      top and left padding to center the icon.
+  */
+}
+.status-matrix__category-rss i,
+.status-matrix__service-rss i {
+  padding-top: .45em;
+  padding-left: .05em;
+  color: #333;
+  font-size: .825em;
+}
+.status-matrix__category-rss:hover,
+.status-matrix__service-rss:hover {
+  background-color: #f25b19;
+}
+.status-matrix__category-rss:hover i,
+.status-matrix__service-rss:hover i {
+  color: #fff;
+}
+
+.status-matrix__service {
+  position: relative;
+  padding-left: 2em;
+}
+
+.status-matrix__category,
+.status-matrix__service {
+  text-align: left;
+}
+
+.status-matrix__reporting-off-icon {
+  position: absolute;
+  left: 6px;
+  color: #bbb;
+}
+
+.status-matrix__service a:hover {
+  text-decoration: underline;
+  color: #990000;
+}
+
+.status-matrix__service-title {
+  display: inline-block;
+  max-width: 70%;
+}
+
+.status-matrix__info-indicator {
+  color: #49afc7;
+}
+
+.status-matrix__sub-row {
+  background-color: #fff;
+}
+.is-expand-all .status-matrix__sub-row {
+  display: table-row;
+}
+
+.status-icon {
+  text-align: center;
+}
+
+.status-icon--good .fa {
+  color: #22b573;
+}
+
+.status-icon--ongoing .fa {
+  color: #f5bb17;
+}
+
+.status-icon--alert .fa {
+  color: #f25b19;
+}
+
+.status-icon--maintenance .fa {
+  color: #a7a9ab;
+}
+
+.status-icon--info .fa {
+  color: #49afc7;
+}
+
+.status-icon--grey .fa {
+  color: inherit;
+}
+
+/*
+    This handles the transition for the header row as it
+    changes to the "subtle" state
+*/
+.status-matrix__header-row {
+  transition: all .3s ease;
+}
+
+/*
+    Subtle js state class for expanded service category rows.
+    for example
+    Authentication (Main category row)
+        CAS
+        OTP
+        Keberos
+*/
+.is-subtle {
+  background-color: #eee;
+}
+.is-subtle .status-icon i {
+  color: #ccc !important;
+}
+.is-subtle .status-matrix__category-toggle,
+.is-subtle .status-matrix__category-toggle:hover {
+  color: #ccc;
+}
+.is-subtle .status-matrix__category-toggle:hover i {
+  color: #ccc;
+}
+.is-subtle .status-matrix__category-rss,
+.is-subtle .status-matrix__service-rss {
+  background-color: #eee;
+  cursor: default;
+}
+.is-subtle .status-matrix__category-rss i,
+.is-subtle .status-matrix__service-rss i {
+  color: #ccc;
+}
+
+.status-matrix__category-toggle {
+  color: #333;
+}
+.status-matrix__category-toggle:hover {
+  color: #990000;
+}
+.status-matrix__category-toggle:hover i {
+  color: #990000;
+}
+.status-matrix__category-toggle i {
+  color: #ccc;
+}
+
+@media screen and (max-width: 48em) {
+  .status-matrix {
+    padding: 1em 0;
+    margin: 0;
+    background-color: #fff;
+    border: none;
+  }
+
+  .status-matrix__wrapper {
+    background-color: #fff;
+    border: none;
+  }
+}
+
+
+/* status-matrix--single displays affected campuses on single notice pages */
+.status-matrix--single {
+  padding: 0;
+  border: 1px solid #eee;
+  background: none;
+}
+.status-matrix--single .status-matrix__campus {
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  -o-transform: none;
+}
+.status-matrix--single th {
+  border: 1px solid #ddd;
+  border-top: none;
+  background: #fafafa;
+}
+.status-matrix--single th:first-child {
+  border-left: none;
+}
+.status-matrix--single th:last-child {
+  border-right: none;
+}
