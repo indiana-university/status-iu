@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'rivet-uits/css/rivet.css'
 import { Table } from 'rivet-react'
 import { Link } from 'react-router-dom'
+import { notices, serviceGroups } from '../status-api'
 
 export class Home extends Component {
 
@@ -10,30 +11,14 @@ export class Home extends Component {
     this.state = {
       error: null,
       isLoaded: false,
-      notices: []
+      notices: [],
+      serviceGroups: []
     };
   }
 
   componentDidMount() {
-    fetch("https://api.status-test.uits.iu.edu/Notices")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            isLoaded: true,
-            notices: result
-          });
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      )
+    notices(this)
+    serviceGroups(this)
   }
 
   render() {
@@ -96,10 +81,10 @@ export class Home extends Component {
             </tr>
             </thead>
             <tbody>
-            {this.state.notices.map((notice) =>
-              <tr key={notice.id}>
-                <td>{notice.name}</td>
-                <td>{notice.content}</td>
+            {this.state.serviceGroups.map((service) =>
+              <tr key={service.id}>
+                <td>{service.name}</td>
+                <td>{service.description}</td>
               </tr>
             )}
             </tbody>
