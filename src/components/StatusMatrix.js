@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import 'rivet-uits/css/rivet.css'
 import { Table } from 'rivet-react'
-import { notices, serviceGroups, services } from '../status-api'
+import { serviceGroups, services } from '../status-api'
 import './StatusMatrix.css'
-import {checkmark, chevronUp, rss} from '../icons'
+import {checkmark, chevronDown, chevronUp, rss} from '../icons'
 
 
 export class StatusMatrix extends Component {
@@ -14,25 +14,35 @@ export class StatusMatrix extends Component {
       error: null,
       isLoaded: false,
       notices: [],
-      serviceGroups: [],
+      groups: [],
       services: []
     };
     this.isPartOfGroup = this.isPartOfGroup.bind(this)
+    this.toggleServiceGroup = this.toggleServiceGroup.bind(this)
   }
 
   isPartOfGroup(service, group) {
     return service.serviceGroup.id === group.id
   }
 
+  toggleServiceGroup(id) {
+    let groups = this.state.groups
+    let serviceGroup = groups.findIndex((group) => {
+      return group.id === id
+    })
+
+    groups[serviceGroup].expanded = !groups[serviceGroup].expanded
+    this.setState({groups});
+  }
+
   componentDidMount() {
-    notices(this)
     serviceGroups(this)
     services(this)
   }
 
   render() {
     return (
-      <Table compact>
+      <Table margin={{top: "md"}} compact>
         <thead>
           <tr>
             <th width="350">Service category</th>
@@ -66,12 +76,12 @@ export class StatusMatrix extends Component {
           </tr>
         </thead>
         <tbody>
-          {this.state.serviceGroups.map((group) =>
+          {this.state.groups.map((group) =>
             <React.Fragment key={group.id}>
               <tr className="status-matrix__header-row">
                 <td className="status-matrix__category">
-                  <button className="rvt-button--plain status-matrix__category-toggle js-toggle__trigger">
-                    {chevronUp}
+                  <button onClick={()=>this.toggleServiceGroup(group.id)} className="rvt-button--plain status-matrix__category-toggle js-toggle__trigger">
+                    {group.expanded ? chevronDown : chevronUp}
                     <span className="rvt-m-left-xs">{group.name}</span>
                   </button>
                   <a href="https://status.uits.iu.edu/Rss?services=TODO,TODO"
@@ -92,7 +102,7 @@ export class StatusMatrix extends Component {
                 <td className="status-icon status-icon--good rvt-color-green">{checkmark}</td>
                 <td className="status-icon status-icon--good rvt-color-green">{checkmark}</td>
               </tr>
-              {this.state.services.map((service) =>
+              {group.expanded && this.state.services.map((service) =>
                 <React.Fragment key={service.id}>
                   { this.isPartOfGroup(service, group) &&
                     <tr className="status-matrix__sub-row js-toggle__target">

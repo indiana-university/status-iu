@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import 'rivet-uits/css/rivet.css'
 import { notices, serviceGroups } from '../status-api'
+import { Container, Row, Col } from 'rivet-react'
 import { AlertNotices, InformationNotices, MaintenanceNotices, StatusMatrix } from "../components";
 
 export class Home extends Component {
@@ -22,16 +23,12 @@ export class Home extends Component {
 
   render() {
     return (
-        <React.Fragment>
-          <AlertNotices />
-
-          <MaintenanceNotices />
-
-          <InformationNotices />
-
-          <StatusMatrix />
-
-        </React.Fragment>
+      <Container margin={{tb: "md"}} width="senior" center>
+        <AlertNotices />
+        <MaintenanceNotices />
+        <InformationNotices />
+        <StatusMatrix />
+      </Container>
     );
   }
 }

@@ -86,10 +86,9 @@
       top and left padding to center the icon.
   */
 }
-.status-matrix__category-rss i,
-.status-matrix__service-rss i {
-  padding-top: .45em;
-  padding-left: .05em;
+.status-matrix__category-rss svg,
+.status-matrix__service-rss svg {
+  vertical-align: middle;
   color: #333;
   font-size: .825em;
 }
@@ -97,8 +96,8 @@
 .status-matrix__service-rss:hover {
   background-color: #f25b19;
 }
-.status-matrix__category-rss:hover i,
-.status-matrix__service-rss:hover i {
+.status-matrix__category-rss:hover svg,
+.status-matrix__service-rss:hover svg {
   color: #fff;
 }
 
@@ -207,6 +206,8 @@
 }
 
 .status-matrix__category-toggle {
+  width: 280px;
+  text-align: left;
   color: #333;
 }
 .status-matrix__category-toggle:hover {
@@ -230,6 +231,10 @@
   .status-matrix__wrapper {
     background-color: #fff;
     border: none;
+  }
+
+  .status-matrix__category-toggle {
+    width: initial;
   }
 }
 

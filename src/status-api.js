@@ -26,7 +26,7 @@ export function notices(context) {
 
 
 export function serviceGroups(context) {
-  makeAPICall(context, '/servicegroups', 'serviceGroups')
+  makeAPICall(context, '/servicegroups', 'groups')
 }
 
 export function services(context) {
