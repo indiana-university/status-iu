@@ -44,12 +44,18 @@
 .status-matrix__campus {
   font-weight: 700;
   font-size: .825em;
+  line-height: 3;
+  text-align: center;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
   -o-transform: rotate(-90deg);
   /* Internet Explorer */
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+.status-matrix__campus abbr {
+  border-bottom: 1px dotted;
 }
 
 .status-matrix__category {

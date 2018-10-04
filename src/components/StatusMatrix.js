@@ -48,7 +48,7 @@ export class StatusMatrix extends Component {
 
   render() {
     return (
-      <Table>
+      <Table compact>
         <thead>
           <tr>
             <th width="350">Service category</th>
