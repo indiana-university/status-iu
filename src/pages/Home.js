@@ -36,12 +36,14 @@ export class Home extends Component {
     let alertNotices = filterNoticesByType('Alert')
     let maintenanceNotices = filterNoticesByType('Maintenance')
     let informationNotices = filterNoticesByType('Information')
+    let ongoingNotices = filterNoticesByType('Ongoing')
 
     return (
       <Container margin={{tb: "md"}} width="senior" center>
-        <Notices notices={alertNotices} title="Alert notices" />
-        <Notices notices={maintenanceNotices} title="Maintenance notices" />
-        <Notices notices={informationNotices} title="Information notices" />
+        <Notices type='alert' notices={alertNotices} title="Alert notices" />
+        <Notices type='maintenance' notices={maintenanceNotices} title="Maintenance notices" />
+        <Notices type='information' notices={informationNotices} title="Information notices" />
+        <Notices type='ongoing' notices={ongoingNotices} title="On-going notices" />
         <StatusMatrix />
       </Container>
     );
