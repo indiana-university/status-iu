@@ -106,7 +106,7 @@ export class StatusMatrix extends Component {
               <React.Fragment key={group.id}>
                 <tr className="status-matrix__header-row">
                   <td className="status-matrix__category">
-                    <button onClick={()=>this.toggleServiceGroup(group.id)} className="rvt-button--plain status-matrix__category-toggle js-toggle__trigger">
+                    <button onClick={()=>this.toggleGroup(group.id)} className="rvt-button--plain status-matrix__category-toggle js-toggle__trigger">
                       {group.expanded ? chevronDown : chevronUp}
                       <span className="rvt-m-left-xs">{group.name}</span>
                     </button>
