@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import 'rivet-uits/css/rivet.css'
 import { notices } from '../status-api'
-import { Container } from 'rivet-react'
+import {Container, Table} from 'rivet-react'
 import { Notices, StatusMatrix } from "../components";
 
 export class Home extends Component {
@@ -43,7 +43,7 @@ export class Home extends Component {
         <Notices type='maintenance' notices={maintenanceNotices} title="Maintenance notices" />
         <Notices type='information' notices={informationNotices} title="Information notices" />
         <Notices type='ongoing' notices={ongoingNotices} title="On-going notices" />
-        <StatusMatrix />
+        <StatusMatrix hide="md-down" />
       </Container>
     );
   }

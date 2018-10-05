@@ -4,7 +4,7 @@ import { Table, Container } from 'rivet-react'
 import { Link } from 'react-router-dom'
 import {groups, services, notices} from '../status-api'
 import './StatusMatrix.css'
-import {checkmark, chevronDown, chevronRight, rss} from '../icons'
+import {checkmark, chevronDown, chevronRight, rss, exclamation, minus, info} from '../icons'
 
 
 export class StatusMatrix extends Component {
@@ -108,19 +108,19 @@ export class StatusMatrix extends Component {
         <div className="status-key">
           <ul className="status-key__list">
             <li className="status-key__item status-key__item--alert">
-              <i className="fa fa-exclamation-triangle"></i>
+              <span className="rvt-alert--danger rvt-m-right-xxs">{exclamation}</span>
               <span>Alert</span>
             </li>
             <li className="status-key__item status-key__item--ongoing">
-              <i className="fa fa-minus-square"></i>
+              <span className="rvt-alert--warning rvt-m-right-xxs">{minus}</span>
               <span>Ongoing issue</span>
             </li>
             <li className="status-key__item status-key__item--maintenance">
-              <i className="fa fa-cogs"></i>
+              <span className="rvt-alert--info rvt-m-right-xxs">{info}</span>
               <span>Maintenance</span>
             </li>
             <li className="status-key__item status-key__item--good">
-              <span className="rvt-color-green">{checkmark}</span>
+              <span className="rvt-alert--success rvt-m-right-xxs">{checkmark}</span>
               <span>Healthy</span>
             </li>
           </ul>
@@ -175,15 +175,15 @@ export class StatusMatrix extends Component {
                       <span className="rvt-sr-only">RSS feed for {group.name}</span>
                     </Link>
                   </td>
-                  <td className="status-icon status-icon--good rvt-color-green">{checkmark}</td>
-                  <td className="status-icon status-icon--good rvt-color-green">{checkmark}</td>
-                  <td className="status-icon status-icon--good rvt-color-green">{checkmark}</td>
-                  <td className="status-icon status-icon--good rvt-color-green">{checkmark}</td>
-                  <td className="status-icon status-icon--good rvt-color-green">{checkmark}</td>
-                  <td className="status-icon status-icon--good rvt-color-green">{checkmark}</td>
-                  <td className="status-icon status-icon--good rvt-color-green">{checkmark}</td>
-                  <td className="status-icon status-icon--good rvt-color-green">{checkmark}</td>
-                  <td className="status-icon status-icon--good rvt-color-green">{checkmark}</td>
+                  <td className="status-icon status-icon--good rvt-alert--success">{checkmark}</td>
+                  <td className="status-icon status-icon--good rvt-alert--success">{checkmark}</td>
+                  <td className="status-icon status-icon--good rvt-alert--info">{info}</td>
+                  <td className="status-icon status-icon--good rvt-alert--success">{checkmark}</td>
+                  <td className="status-icon status-icon--good rvt-alert--error">{exclamation}</td>
+                  <td className="status-icon status-icon--good rvt-alert--warning">{minus}</td>
+                  <td className="status-icon status-icon--good rvt-alert--success">{checkmark}</td>
+                  <td className="status-icon status-icon--good rvt-alert--success">{checkmark}</td>
+                  <td className="status-icon status-icon--good rvt-alert--success">{checkmark}</td>
                 </tr>
                 {group.expanded && this.state.services.map((service) =>
                   <React.Fragment key={service.id}>
@@ -195,15 +195,15 @@ export class StatusMatrix extends Component {
                             {rss}
                           </Link>
                         </td>
-                        <td className="status-icon status-icon--good rvt-color-green">{checkmark}</td>
-                        <td className="status-icon status-icon--good rvt-color-green">{checkmark}</td>
-                        <td className="status-icon status-icon--good rvt-color-green">{checkmark}</td>
-                        <td className="status-icon status-icon--good rvt-color-green">{checkmark}</td>
-                        <td className="status-icon status-icon--good rvt-color-green">{checkmark}</td>
-                        <td className="status-icon status-icon--good rvt-color-green">{checkmark}</td>
-                        <td className="status-icon status-icon--good rvt-color-green">{checkmark}</td>
-                        <td className="status-icon status-icon--good rvt-color-green">{checkmark}</td>
-                        <td className="status-icon status-icon--good rvt-color-green">{checkmark}</td>
+                        <td className="status-icon status-icon--good rvt-alert--success">{checkmark}</td>
+                        <td className="status-icon status-icon--good rvt-alert--success">{checkmark}</td>
+                        <td className="status-icon status-icon--good rvt-alert--info">{info}</td>
+                        <td className="status-icon status-icon--good rvt-alert--success">{checkmark}</td>
+                        <td className="status-icon status-icon--good rvt-alert--danger">{exclamation}</td>
+                        <td className="status-icon status-icon--good rvt-alert--warning">{minus}</td>
+                        <td className="status-icon status-icon--good rvt-alert--success">{checkmark}</td>
+                        <td className="status-icon status-icon--good rvt-alert--success">{checkmark}</td>
+                        <td className="status-icon status-icon--good rvt-alert--success">{checkmark}</td>
                       </tr>
                     }
                   </React.Fragment>
