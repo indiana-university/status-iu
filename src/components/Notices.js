@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import 'rivet-uits/css/rivet.css'
 import './Notices.css'
-import {Link} from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { Badge } from 'rivet-react'
 
 
 export class Notices extends Component {
@@ -25,6 +26,14 @@ export class Notices extends Component {
                   <div className="container kill-vertical">
                     <div className="unit four-fifths">
                       <Link to={`/notices/${notice.id}`}>{notice.name}</Link>
+                      {notice.services.length > 1 &&
+                        <div>
+                          <span className="rvt-ts-xs rvt-text-bold rvt-m-right-xs">Affected services:</span>
+                          {notice.services.map((service) =>
+                            <Badge modifier="secondary" typescale="xxs" margin={{right:'xxs', top:'xs'}}>{service.name}</Badge>
+                          )}
+                        </div>
+                      }
                     </div>
                   </div>
                 </li>
