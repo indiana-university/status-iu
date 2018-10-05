@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import 'rivet-uits/css/rivet.css'
 import { Table, Container } from 'rivet-react'
 import { Link } from 'react-router-dom'
-import {groups, service, services} from '../status-api'
+import {groups, services} from '../status-api'
 import './StatusMatrix.css'
 import {checkmark, chevronDown, chevronUp, rss} from '../icons'
 
@@ -30,12 +30,14 @@ export class StatusMatrix extends Component {
 
   getServiceIds(group) {
     let serviceIds = []
+    let services = this.state.services
 
-    this.state.services.map((service) => {
-      if(this.isPartOfGroup(service, group)) {
-        serviceIds.push(service.id)
+    // find the services that are a part of this group
+    for(let i=0; i < services.length; i++) {
+      if(this.isPartOfGroup(services[i], group)) {
+        serviceIds.push(services[i].id)
       }
-    })
+    }
 
     return serviceIds.join(',')
   }
