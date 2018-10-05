@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import 'rivet-uits/css/rivet.css'
 import { notices, serviceGroups } from '../status-api'
-import { Container, Row, Col } from 'rivet-react'
-import { AlertNotices, InformationNotices, MaintenanceNotices, StatusMatrix } from "../components";
+import { Container } from 'rivet-react'
+import { Notices, StatusMatrix } from "../components";
 
 export class Home extends Component {
 
@@ -14,6 +14,9 @@ export class Home extends Component {
       notices: [],
       serviceGroups: []
     };
+
+    this.filterNoticesByType = this.filterNoticesByType.bind(this)
+
   }
 
   componentDidMount() {
@@ -21,12 +24,24 @@ export class Home extends Component {
     serviceGroups(this)
   }
 
+  filterNoticesByType(type) {
+    let notices = this.state.notices
+    return notices.filter((notice) => {
+      return notice.noticeType === type
+    })
+  }
+
   render() {
+    let filterNoticesByType = this.filterNoticesByType
+    let alertNotices = filterNoticesByType('Alert')
+    let maintenanceNotices = filterNoticesByType('Maintenance')
+    let informationNotices = filterNoticesByType('Information')
+
     return (
       <Container margin={{tb: "md"}} width="senior" center>
-        <AlertNotices />
-        <MaintenanceNotices />
-        <InformationNotices />
+        <Notices notices={alertNotices} title="Alert notices" />
+        <Notices notices={maintenanceNotices} title="Maintenance notices" />
+        <Notices notices={informationNotices} title="Information notices" />
         <StatusMatrix />
       </Container>
     );
