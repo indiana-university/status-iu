@@ -19,11 +19,13 @@ const App = () => (
         </HeaderNavigation>
 
       </Header>
-      <Route exact path="/" component={Home} />
-      <Route exact path="/notices" component={Notices} />
-      <Route path="/notices/:noticeId" component={Notice} />
-      <Route path="/calendar" component={Calendar} />
-      <Route path="/maintenance" component={Maintenance} />
+      <main id="main-content">
+        <Route exact path="/" component={Home} />
+        <Route exact path="/notices" component={Notices} />
+        <Route path="/notices/:noticeId" component={Notice} />
+        <Route path="/calendar" component={Calendar} />
+        <Route path="/maintenance" component={Maintenance} />
+      </main>
     </React.Fragment>
   </Router>
 )
