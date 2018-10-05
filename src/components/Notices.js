@@ -30,7 +30,7 @@ export class Notices extends Component {
                         <div>
                           <span className="rvt-ts-xs rvt-text-bold rvt-m-right-xs">Affected services:</span>
                           {notice.services.map((service) =>
-                            <Badge modifier="secondary" typescale="xxs" margin={{right:'xxs', top:'xs'}}>{service.name}</Badge>
+                            <Badge key={service.id} modifier="secondary" typescale="xxs" margin={{right:'xxs', top:'xs'}}>{service.name}</Badge>
                           )}
                         </div>
                       }

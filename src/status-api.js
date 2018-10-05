@@ -1,6 +1,6 @@
 const baseUrl='https://api.status-test.uits.iu.edu'
 
-function makeAPICall(context, endpoint, stateName) {
+function makeAPICall(context, endpoint, stateName, callback) {
   return fetch(baseUrl + endpoint)
     .then(res => res.json())
     .then(
@@ -8,6 +8,9 @@ function makeAPICall(context, endpoint, stateName) {
         context.setState({
           [stateName]: result
         });
+        if(callback && typeof callback === 'function') {
+          callback()
+        }
       },
       // Note: it's important to handle errors here
       // instead of a catch() block so that we don't swallow
@@ -25,8 +28,8 @@ export function notices(context) {
 }
 
 
-export function serviceGroups(context) {
-  makeAPICall(context, '/servicegroups', 'groups')
+export function groups(context) {
+  makeAPICall(context, '/servicegroups', 'groups', context.expandGroupsWithNotices)
 }
 
 export function services(context) {

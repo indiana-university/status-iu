@@ -262,3 +262,91 @@
 .status-matrix--single th:last-child {
   border-right: none;
 }
+
+/*------------------------------------------------------------------------------
+    Status key
+    Key/legend for icons and color
+------------------------------------------------------------------------------*/
+.status-key {
+  margin-bottom: 3em;
+  background-color: transparent;
+}
+
+.status-key__list {
+  list-style: none;
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  text-align: center;
+}
+.status-key--left .status-key__list {
+  text-align: left;
+}
+.status-key__right .status-key__list {
+  text-align: right;
+}
+
+.status-key__item {
+  display: inline-block;
+  color: #666;
+  margin-right: 1em;
+}
+.status-key__item i {
+  display: inline-block;
+  font-size: 1.2em;
+}
+.status-key__item span {
+  font-size: .875em;
+}
+
+.status-key__item--alert i {
+  color: #f25b19;
+}
+
+.status-key__item--ongoing i {
+  color: #f5bb17;
+}
+
+.status-key__item--info i {
+  color: #49afc7;
+}
+
+.status-key__item--good i {
+  color: #22b573;
+}
+
+.status-key__item--maintenance i {
+  color: #a7a9ab;
+}
+
+/* Modifies .status-key so that it's more like a regular vertical list */
+.status-key--secondary .status-key__list {
+  list-type: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+.status-key--secondary .status-key__item {
+  color: #666;
+  display: block;
+  padding: .5em 0;
+}
+.status-key--secondary .status-key__item i {
+  display: inline-block;
+  font-size: 1.2em;
+}
+.status-key--secondary .status-key__item span {
+  font-size: .875em;
+}
+
+@media screen and (max-width: 48em) {
+  .status-key {
+    margin-bottom: 0;
+  }
+
+  .status-key__item {
+    display: block;
+    text-align: center;
+    padding: .5em 0;
+  }
+}
