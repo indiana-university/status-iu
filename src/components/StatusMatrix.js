@@ -4,7 +4,7 @@ import { Table, Container } from 'rivet-react'
 import { Link } from 'react-router-dom'
 import {groups, services, notices} from '../status-api'
 import './StatusMatrix.css'
-import {checkmark, chevronDown, chevronUp, rss} from '../icons'
+import {checkmark, chevronDown, chevronRight, rss} from '../icons'
 
 
 export class StatusMatrix extends Component {
@@ -104,7 +104,7 @@ export class StatusMatrix extends Component {
 
   render() {
     return (
-      <Container hide='md-down'>
+      <Container className="status-matrix" hide='md-down'>
         <div className="status-key">
           <ul className="status-key__list">
             <li className="status-key__item status-key__item--alert">
@@ -164,7 +164,7 @@ export class StatusMatrix extends Component {
                 <tr className="status-matrix__header-row">
                   <td className="status-matrix__category">
                     <button onClick={()=>this.toggleGroup(group.id)} className="rvt-button--plain status-matrix__category-toggle js-toggle__trigger">
-                      {group.expanded ? chevronDown : chevronUp}
+                      {group.expanded ? chevronDown : chevronRight}
                       <span className="rvt-m-left-xs">{group.name}</span>
                     </button>
                     <Link to={`/Rss?services=${this.getServiceIds(group)}`}

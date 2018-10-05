@@ -3,6 +3,9 @@
     _status-matrix.css
     Status matrix on the homepage
 --------------------------------------------------------------------*/
+.status-matrix svg {
+  vertical-align: middle;
+}
 .status-matrix__wrapper {
   margin-bottom: 4em;
 }
@@ -17,7 +20,6 @@
   table-layout: fixed;
 }
 .status-matrix a {
-  color: #333;
   display: block;
 }
 .status-matrix tr {
@@ -62,6 +64,7 @@
   position: relative;
 }
 
+
 /*
     Absolutely positioned method icons. Giving category and
     service rss icons different classes for now just incase
@@ -88,7 +91,6 @@
 }
 .status-matrix__category-rss svg,
 .status-matrix__service-rss svg {
-  vertical-align: middle;
   color: #333;
   font-size: .825em;
 }
@@ -172,7 +174,9 @@
 */
 .status-matrix__header-row {
   transition: all .3s ease;
+  background-color: #f7f7f7;
 }
+
 
 /*
     Subtle js state class for expanded service category rows.
@@ -209,6 +213,8 @@
   width: 280px;
   text-align: left;
   color: #333;
+  padding-left: 2em;
+  text-indent: -1.5em;
 }
 .status-matrix__category-toggle:hover {
   color: #990000;
