@@ -14,16 +14,16 @@ export class Notices extends Component {
     return (
       <React.Fragment>
         {!!notices.length &&
-          <div class={`message-box message-box--${type}`}>
-            <header class="message-box-header">
-              <h2 class="message-box-header__message">{title}</h2>
-              <div class="message-box-header__count">{notices.length}</div>
+          <div className={`message-box message-box--${type}`}>
+            <header className="message-box-header">
+              <h2 className="message-box-header__message">{title}</h2>
+              <div className="message-box-header__count">{notices.length}</div>
             </header>
-            <ul class="message-box__list">
+            <ul className="message-box__list">
               {notices && notices.map((notice) =>
-                <li class="message-box__list-item" key={notice.id}>
-                  <div class="container kill-vertical">
-                    <div class="unit four-fifths">
+                <li className="message-box__list-item" key={notice.id}>
+                  <div className="container kill-vertical">
+                    <div className="unit four-fifths">
                       <Link to={`/notices/${notice.id}`}>{notice.name}</Link>
                     </div>
                   </div>
