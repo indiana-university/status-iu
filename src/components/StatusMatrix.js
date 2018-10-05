@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import 'rivet-uits/css/rivet.css'
 import { Table, Container } from 'rivet-react'
-import { groups, services } from '../status-api'
+import { Link } from 'react-router-dom'
+import {groups, service, services} from '../status-api'
 import './StatusMatrix.css'
 import {checkmark, chevronDown, chevronUp, rss} from '../icons'
 
@@ -20,10 +21,23 @@ export class StatusMatrix extends Component {
     this.isPartOfGroup = this.isPartOfGroup.bind(this)
     this.toggleGroup = this.toggleGroup.bind(this)
     this.expandGroupsWithNotices = this.expandGroupsWithNotices.bind(this)
+    this.getServiceIds = this.getServiceIds.bind(this)
   }
 
   isPartOfGroup(service, group) {
     return service.serviceGroup.id === group.id
+  }
+
+  getServiceIds(group) {
+    let serviceIds = []
+
+    this.state.services.map((service) => {
+      if(this.isPartOfGroup(service, group)) {
+        serviceIds.push(service.id)
+      }
+    })
+
+    return serviceIds.join(',')
   }
 
   toggleGroup(id) {
@@ -110,13 +124,13 @@ export class StatusMatrix extends Component {
                       {group.expanded ? chevronDown : chevronUp}
                       <span className="rvt-m-left-xs">{group.name}</span>
                     </button>
-                    <a href="https://status.uits.iu.edu/Rss?services=TODO,TODO"
+                    <Link to={`/Rss?services=${this.getServiceIds(group)}`}
                        target="_blank"
                        rel="noopener noreferrer"
                        className="status-matrix__category-rss">
                       {rss}
                       <span className="rvt-sr-only">RSS feed for {group.name}</span>
-                    </a>
+                    </Link>
                   </td>
                   <td className="status-icon status-icon--good rvt-color-green">{checkmark}</td>
                   <td className="status-icon status-icon--good rvt-color-green">{checkmark}</td>
@@ -133,10 +147,10 @@ export class StatusMatrix extends Component {
                     { this.isPartOfGroup(service, group) &&
                       <tr className="status-matrix__sub-row js-toggle__target">
                         <td className="status-matrix__service">
-                          <a className="status-matrix__service-title" href="https://status.uits.iu.edu/service/TODO">{service.name}</a>
-                          <a href="https://status.uits.iu.edu/Rss?services=TODO" target="_blank" rel="noopener noreferrer" className="status-matrix__service-rss">
+                          <Link className="status-matrix__service-title" to={`/service/${service.id}`}>{service.name}</Link>
+                          <Link to={`/Rss?services=${service.id}`} target="_blank" rel="noopener noreferrer" className="status-matrix__service-rss">
                             {rss}
-                          </a>
+                          </Link>
                         </td>
                         <td className="status-icon status-icon--good rvt-color-green">{checkmark}</td>
                         <td className="status-icon status-icon--good rvt-color-green">{checkmark}</td>
