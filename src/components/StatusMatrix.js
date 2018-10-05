@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import 'rivet-uits/css/rivet.css'
 import { Table, Container } from 'rivet-react'
 import { Link } from 'react-router-dom'
-import {groups, services} from '../status-api'
+import {groups, services, notices} from '../status-api'
 import './StatusMatrix.css'
 import {checkmark, chevronDown, chevronUp, rss} from '../icons'
 
@@ -22,15 +22,21 @@ export class StatusMatrix extends Component {
     this.toggleGroup = this.toggleGroup.bind(this)
     this.expandGroupsWithNotices = this.expandGroupsWithNotices.bind(this)
     this.getServiceIds = this.getServiceIds.bind(this)
+    this.groupHasNotices = this.groupHasNotices.bind(this)
+    this.serviceHasNotice = this.serviceHasNotice.bind(this)
   }
 
   isPartOfGroup(service, group) {
-    return service.serviceGroup.id === group.id
+    if(service && group) {
+        return service.serviceGroup.id === group.id
+    }
+    return false
   }
 
   getServiceIds(group) {
     let serviceIds = []
     let services = this.state.services
+
 
     // find the services that are a part of this group
     for(let i=0; i < services.length; i++) {
@@ -52,13 +58,48 @@ export class StatusMatrix extends Component {
     this.setState({groups});
   }
 
+  serviceHasNotice(service) {
+    let notices = this.state.notices
+
+    return notices.filter((notice) => {
+      return notice.services.filter((s) => {
+        return s.id === service.id
+      }).length > 0
+    }).length > 0
+
+  }
+
+  groupHasNotices(group) {
+    for(let i=0; i < this.state.services.length; i++) {
+      if(this.isPartOfGroup(this.state.services[i], group) && this.serviceHasNotice(this.state.services[i])) {
+        return true
+      }
+    }
+    return false
+  }
+
   expandGroupsWithNotices() {
-    console.log("cool")
+    // make sure all the APIs have finished before expanding
+    if(this.state.groups.length === 0 || this.state.services.length === 0 || this.state.notices.length === 0) {
+      setTimeout(function() { this.expandGroupsWithNotices() }.bind(this), 100)
+    }
+
+    let groups = this.state.groups
+
+    for(let i=0; i < groups.length; i++) {
+      if(this.groupHasNotices(groups[i])) {
+        groups[i].expanded = true
+      }
+    }
+
+    this.setState({groups});
+
   }
 
   componentDidMount() {
     groups(this)
     services(this)
+    notices(this)
   }
 
   render() {
@@ -149,7 +190,7 @@ export class StatusMatrix extends Component {
                     { this.isPartOfGroup(service, group) &&
                       <tr className="status-matrix__sub-row js-toggle__target">
                         <td className="status-matrix__service">
-                          <Link className="status-matrix__service-title" to={`/service/${service.id}`}>{service.name}</Link>
+                          <Link className="rvt-ts-xs rvt-m-left-lg status-matrix__service-title" to={`/service/${service.id}`}>{service.name}</Link>
                           <Link to={`/Rss?services=${service.id}`} target="_blank" rel="noopener noreferrer" className="status-matrix__service-rss">
                             {rss}
                           </Link>
