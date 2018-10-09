@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import 'rivet-uits/css/rivet.css'
 import { Badge, Row, Col, Panel } from 'rivet-react'
+import {checkmark, exclamation, info, minus} from "../icons";
 
 export class Notice extends Component {
 
@@ -46,11 +47,63 @@ export class Notice extends Component {
       <React.Fragment>
         <Row>
           <Col md={8}>
-            <h1>{notice.name}</h1>
-            <div>Services affected: {notice.services && notice.services.map(service =>
+            <h1 className="rvt-ts-41 rvt-text-bold">{notice.name}</h1>
+            <div className="rvt-m-tb-md">Affected services: {notice.services && notice.services.map(service =>
               <Badge variant="info" key={service.id}>{service.name}</Badge>
             )}</div>
             <p>{notice.content}</p>
+            <h2 className="rvt-text-bold rvt-m-top-lg">Affected campuses</h2>
+            <div className="rvt-m-tb-sm status-matrix status-matrix--single">
+              <table>
+                <thead>
+                <tr>
+                  <th className="status-matrix__campus">IUB</th>
+                  <th className="status-matrix__campus">IUPUI</th>
+                  <th className="status-matrix__campus">IUPUC</th>
+                  <th className="status-matrix__campus">IUE</th>
+                  <th className="status-matrix__campus">IUFW</th>
+                  <th className="status-matrix__campus">IUK</th>
+                  <th className="status-matrix__campus">IUN</th>
+                  <th className="status-matrix__campus">IUSB</th>
+                  <th className="status-matrix__campus">IUS</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td className="status-icon status-icon--good rvt-alert--success">{checkmark}</td>
+                  <td className="status-icon status-icon--good rvt-alert--success">{checkmark}</td>
+                  <td className="status-icon status-icon--good rvt-alert--info">{info}</td>
+                  <td className="status-icon status-icon--good rvt-alert--success">{checkmark}</td>
+                  <td className="status-icon status-icon--good rvt-alert--error">{exclamation}</td>
+                  <td className="status-icon status-icon--good rvt-alert--warning">{minus}</td>
+                  <td className="status-icon status-icon--good rvt-alert--success">{checkmark}</td>
+                  <td className="status-icon status-icon--good rvt-alert--success">{checkmark}</td>
+                  <td className="status-icon status-icon--good rvt-alert--success">{checkmark}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div className="status-key status-key--left">
+              <ul className="status-key__list">
+                <li className="status-key__item status-key__item--alert">
+                  <span className="rvt-alert--danger rvt-m-right-xxs">{exclamation}</span>
+                  <span>Alert</span>
+                </li>
+                <li className="status-key__item status-key__item--ongoing">
+                  <span className="rvt-alert--warning rvt-m-right-xxs">{minus}</span>
+                  <span>Ongoing issue</span>
+                </li>
+                <li className="status-key__item status-key__item--maintenance">
+                  <span className="rvt-alert--info rvt-m-right-xxs">{info}</span>
+                  <span>Maintenance</span>
+                </li>
+                <li className="status-key__item status-key__item--good">
+                  <span className="rvt-alert--success rvt-m-right-xxs">{checkmark}</span>
+                  <span>Healthy</span>
+                </li>
+              </ul>
+            </div>
           </Col>
           <Col md={4}>
             <Panel>

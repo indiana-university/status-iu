@@ -24,6 +24,8 @@ export class StatusMatrix extends Component {
     this.getServiceIds = this.getServiceIds.bind(this)
     this.groupHasNotices = this.groupHasNotices.bind(this)
     this.serviceHasNotice = this.serviceHasNotice.bind(this)
+    this.serviceStatusByCampus = this.serviceStatusByCampus.bind(this)
+    this.campusHasNotice = this.campusHasNotice.bind(this)
   }
 
   isPartOfGroup(service, group) {
@@ -96,6 +98,58 @@ export class StatusMatrix extends Component {
 
   }
 
+  serviceStatusByCampus(service) {
+    let campuses = ['IUB', 'IUPUI', 'IUPUC', 'IUFW', 'IUK', 'IUE', 'IUN', 'IUSB', 'IUS']
+
+    return campuses.map((campus) => {
+      return this.campusHasNotice(campus, service) || <td className="status-icon status-icon--good rvt-alert--success">{checkmark}</td>
+    })
+  }
+
+  campusHasNotice(campus, service) {
+    let alert = false
+    let ongoing = false
+    let info = false
+
+    let notices = this.state.notices.filter((notice) => {
+       if(notice.services.filter((s) => {
+        return s.id === service.id
+      }).length > 0) {
+         if(notice.noticeType === 'Alert') {
+           alert = true;
+         }
+         if(notice.noticeType === 'Information') {
+           info = true;
+         }
+         if(notice.noticeType === 'Ongoing') {
+           ongoing = true;
+         }
+         return true;
+       }
+    })
+
+    let campusHasNotifications = notices.filter((notice) => {
+      return notice.campuses.filter((c) => {
+        return c.abbreviation === campus
+      }).length > 0
+    })
+
+    if(campusHasNotifications.length === 0) {
+      if(alert) {
+        return <td className="status-icon status-icon--good rvt-alert--danger">{exclamation}</td>
+      } else if(ongoing) {
+        return <td className="status-icon status-icon--good rvt-alert--warning">{minus}</td>
+      } else if(info) {
+        return <td className="status-icon status-icon--good rvt-alert--info">{info}</td>
+      } else {
+        return <td className="status-icon status-icon--good rvt-alert--success">{checkmark}</td>
+      }
+    } else {
+      return <td className="status-icon status-icon--good rvt-alert--success">{checkmark}</td>
+    }
+
+  }
+
   componentDidMount() {
     groups(this)
     services(this)
@@ -104,7 +158,7 @@ export class StatusMatrix extends Component {
 
   render() {
     return (
-      <Container className="status-matrix" hide='md-down'>
+      <React.Fragment>
         <div className="status-key">
           <ul className="status-key__list">
             <li className="status-key__item status-key__item--alert">
@@ -175,6 +229,7 @@ export class StatusMatrix extends Component {
                       <span className="rvt-sr-only">RSS feed for {group.name}</span>
                     </Link>
                   </td>
+
                   <td className="status-icon status-icon--good rvt-alert--success">{checkmark}</td>
                   <td className="status-icon status-icon--good rvt-alert--success">{checkmark}</td>
                   <td className="status-icon status-icon--good rvt-alert--info">{info}</td>
@@ -212,7 +267,7 @@ export class StatusMatrix extends Component {
             )}
           </tbody>
         </Table>
-      </Container>
+      </React.Fragment>
     );
   }
 }

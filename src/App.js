@@ -1,6 +1,6 @@
 import React from 'react';
 import 'rivet-uits/css/rivet.css'
-import { Header, HeaderMenu, HeaderNavigation } from 'rivet-react'
+import {Container, Header, HeaderMenu, HeaderNavigation} from 'rivet-react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import { Home, Calendar, Maintenance, Notice, Notices } from './pages'
 
@@ -20,11 +20,13 @@ const App = () => (
 
       </Header>
       <main id="main-content">
-        <Route exact path="/" component={Home} />
-        <Route exact path="/notices" component={Notices} />
-        <Route path="/notices/:noticeId" component={Notice} />
-        <Route path="/calendar" component={Calendar} />
-        <Route path="/maintenance" component={Maintenance} />
+        <Container margin={{tb: "md"}} width="senior" center>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/notices" component={Notices} />
+          <Route path="/notices/:noticeId" component={Notice} />
+          <Route path="/calendar" component={Calendar} />
+          <Route path="/maintenance" component={Maintenance} />
+        </Container>
       </main>
     </React.Fragment>
   </Router>
