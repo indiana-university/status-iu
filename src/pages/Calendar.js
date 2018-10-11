@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'rivet-uits/css/rivet.css'
 import { Table, Container, Col, Row } from 'rivet-react'
 import { Link } from "react-router-dom";
+import { DebounceInput } from 'react-debounce-input';
 
 export class Calendar extends Component {
 
@@ -64,7 +65,7 @@ export class Calendar extends Component {
         <Container margin={{top: 'lg'}}>
           <Row>
             <Col md={4}>
-              <input type="date" onChange={event=>this.search(event.target.value)} />
+              <DebounceInput type="date" onChange={event=>this.search(event.target.value)} />
             </Col>
             <Col md={8}>
               <Table variant="stripes" cells>
