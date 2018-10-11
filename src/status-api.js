@@ -40,13 +40,12 @@ export function service(context, id) {
   makeAPICall(context, '/services/' + id, 'service')
 }
 
-export function campuses(context, id) {
+export function campuses(context) {
   makeAPICall(context, '/campuses', 'campuses')
 }
 
-export function maintenanceWindows(context, id) {
+export function maintenanceWindows(context) {
   makeAPICall(context, '/maintenancewindows', 'maintenanceWindows')
 }
-
 
 

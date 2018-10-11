@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import 'rivet-uits/css/rivet.css'
-import { Table } from 'rivet-react'
+import { Table, Container, Col, Row } from 'rivet-react'
+import {Link} from "react-router-dom";
 
 export class Calendar extends Component {
 
@@ -11,15 +12,24 @@ export class Calendar extends Component {
       isLoaded: false,
       notices: []
     };
+    this.search = this.search.bind(this)
   }
 
-  componentDidMount() {
-    fetch("https://api.status-test.uits.iu.edu/Notices")
+  search(start, end) {
+    if(!start) {
+      return false
+    }
+
+    if(!end) {
+      end = start
+    }
+    start = start.toISOString()
+    end = end.toISOString()
+    fetch('https://api.status-test.uits.iu.edu/notices/search?visibleStart='+start+'&visibleEnd=' + end)
       .then(res => res.json())
       .then(
         (result) => {
           this.setState({
-            isLoaded: true,
             notices: result
           });
         },
@@ -28,32 +38,48 @@ export class Calendar extends Component {
         // exceptions from actual bugs in components.
         (error) => {
           this.setState({
-            isLoaded: true,
-            error
+            notices: error
           });
-        }
-      )
+      }
+    )
+  }
+
+  componentDidMount() {
+    this.search(new Date())
   }
 
   render() {
     return (
       <React.Fragment>
-        <Table variant="stripes" cells>
-          <thead>
-          <tr>
-            <th>Greeting</th>
-            <th>Audience</th>
-          </tr>
-          </thead>
-          <tbody>
-          {this.state.notices.map((notice) =>
-            <tr key={notice.id}>
-              <td>{notice.name}</td>
-              <td>{notice.content}</td>
-            </tr>
-          )}
-          </tbody>
-        </Table>
+        <h1 className="rvt-ts-41 rvt-text-bold">Notices calendar</h1>
+
+        <hr />
+
+        <Container margin={{top: 'lg'}}>
+          <Row>
+            <Col md={4}>
+              Calendar goes here
+            </Col>
+            <Col md={8}>
+              <Table variant="stripes" cells>
+                <thead>
+                <tr>
+                  <th>Maintenance notices</th>
+                </tr>
+                </thead>
+                <tbody>
+                {this.state.notices.map((notice) =>
+                  <tr key={notice.id}>
+                    <td>
+                      <Link to={`/notices/${notice.id}`}>{notice.name}</Link>
+                    </td>
+                  </tr>
+                )}
+                </tbody>
+              </Table>
+            </Col>
+          </Row>
+        </Container>
       </React.Fragment>
     );
   }
