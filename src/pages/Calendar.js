@@ -20,9 +20,14 @@ export class Calendar extends Component {
       return false
     }
 
+
+    start = new Date(start)
+
     if(!end) {
       end = start
     }
+
+    end = new Date(end)
     start = start.toISOString()
     end = end.toISOString()
     fetch('https://api.status-test.uits.iu.edu/notices/search?visibleStart='+start+'&visibleEnd=' + end)
@@ -58,7 +63,7 @@ export class Calendar extends Component {
         <Container margin={{top: 'lg'}}>
           <Row>
             <Col md={4}>
-              Calendar goes here
+              <input type="date" onChange={event=>this.search(event.target.value)} />
             </Col>
             <Col md={8}>
               <Table variant="stripes" cells>
