@@ -54,6 +54,7 @@ export class Calendar extends Component {
   }
 
   render() {
+    let notices = this.state.notices
     return (
       <React.Fragment>
         <h1 className="rvt-ts-41 rvt-text-bold">Notices calendar</h1>
@@ -73,7 +74,7 @@ export class Calendar extends Component {
                 </tr>
                 </thead>
                 <tbody>
-                {this.state.notices.map((notice) =>
+                {notices && notices.map((notice) =>
                   <tr key={notice.id}>
                     <td>
                       <Link to={`/notices/${notice.id}`}>{notice.name}</Link>
