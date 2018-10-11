@@ -51,7 +51,7 @@ export class Notice extends Component {
             <div className="rvt-m-tb-md">Affected services: {notice.services && notice.services.map(service =>
               <Badge variant="info" key={service.id}>{service.name}</Badge>
             )}</div>
-            <p>{notice.content}</p>
+            <p dangerouslySetInnerHTML={{__html: notice.content}} />
             <h2 className="rvt-text-bold rvt-m-top-lg">Affected campuses</h2>
             <div className="rvt-m-tb-sm status-matrix status-matrix--single">
               <table>
