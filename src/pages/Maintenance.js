@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import 'rivet-uits/css/rivet.css'
 import { Table } from 'rivet-react'
+import { maintenanceWindows } from '../status-api'
 
 export class Maintenance extends Component {
 
@@ -9,47 +10,34 @@ export class Maintenance extends Component {
     this.state = {
       error: null,
       isLoaded: false,
-      notices: []
+      maintenanceWindows: []
     };
   }
 
   componentDidMount() {
-    fetch("https://api.status-test.uits.iu.edu/Notices")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            isLoaded: true,
-            notices: result
-          });
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      )
+    maintenanceWindows(this)
   }
 
   render() {
     return (
       <React.Fragment>
-        <Table variant="stripes" cells>
+        <h1 className="rvt-ts-41 rvt-text-bold">Regularly scheduled maintenance windows</h1>
+        <Table margin={{top:'lg'}} variant="stripes" compact>
           <thead>
           <tr>
-            <th>Greeting</th>
-            <th>Audience</th>
+            <th>Service</th>
+            <th>Frequency</th>
+            <th>Day</th>
+            <th>Time</th>
           </tr>
           </thead>
           <tbody>
-          {this.state.notices.map((notice) =>
-            <tr key={notice.id}>
-              <td>{notice.name}</td>
-              <td>{notice.content}</td>
+          {this.state.maintenanceWindows.map((maintenance) =>
+            <tr key={maintenance.id}>
+              <td>{maintenance.service.name}</td>
+              <td>{maintenance.frequency}</td>
+              <td>{maintenance.day}</td>
+              <td>{maintenance.time}</td>
             </tr>
           )}
           </tbody>

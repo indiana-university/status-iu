@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import 'rivet-uits/css/rivet.css'
-import { Table, Container } from 'rivet-react'
+import { Table } from 'rivet-react'
 import { Link } from 'react-router-dom'
 import {groups, services, notices} from '../status-api'
 import './StatusMatrix.css'
@@ -112,6 +112,7 @@ export class StatusMatrix extends Component {
     let info = false
 
     let notices = this.state.notices.filter((notice) => {
+      // if the services for this notice match the service
        if(notice.services.filter((s) => {
         return s.id === service.id
       }).length > 0) {
@@ -126,6 +127,8 @@ export class StatusMatrix extends Component {
          }
          return true;
        }
+
+       return false;
     })
 
     let campusHasNotifications = notices.filter((notice) => {
