@@ -11,7 +11,8 @@ export class Calendar extends Component {
     this.state = {
       error: null,
       isLoaded: false,
-      notices: []
+      notices: [],
+      date: null
     };
     this.search = this.search.bind(this)
   }
@@ -23,7 +24,7 @@ export class Calendar extends Component {
 
 
     start = new Date(start)
-
+    this.setState({date: start.toISOString().split('T')[0]})
     if(!end) {
       end = start
     }
@@ -56,6 +57,7 @@ export class Calendar extends Component {
 
   render() {
     let notices = this.state.notices
+    let date = this.state.date
     return (
       <React.Fragment>
         <h1 className="rvt-ts-41 rvt-text-bold">Notices calendar</h1>
@@ -65,7 +67,7 @@ export class Calendar extends Component {
         <Container margin={{top: 'lg'}}>
           <Row>
             <Col md={4}>
-              <DebounceInput type="date" onChange={event=>this.search(event.target.value)} />
+              <DebounceInput value={date} type="date" onChange={event=>this.search(event.target.value)} />
             </Col>
             <Col md={8}>
               <Table variant="stripes" cells>
