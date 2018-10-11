@@ -356,3 +356,13 @@
     padding: .5em 0;
   }
 }
+
+.rvt-dropdown__menu svg {
+  vertical-align: middle;
+  margin-bottom: 3px;
+  color: #006298;
+}
+
+.rvt-dropdown__menu a:hover svg {
+  color: #fff;
+}

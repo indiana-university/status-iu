@@ -3,6 +3,7 @@ import 'rivet-uits/css/rivet.css'
 import {Container, Header, HeaderMenu, HeaderNavigation} from 'rivet-react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import { Home, Calendar, Maintenance, Notice, Notices } from './pages'
+import {info} from "./icons";
 
 const App = () => (
   <Router basename={process.env.PUBLIC_URL}>
@@ -10,9 +11,9 @@ const App = () => (
       <Header title="Status.IU">
         <HeaderNavigation>
           <HeaderMenu label="Information">
-            <Link to="/notices/28">CAS and iuware have no end dates</Link>
-            <Link to="/notices/62">New Test Notice Title Update</Link>
-            <Link to="/notices/46055">Two Step for ALL</Link>
+            <Link to="/notices/28"><span className="rvt-m-right-xxs">{info}</span> CAS and iuware have no end dates</Link>
+            <Link to="/notices/62"><span className="rvt-m-right-xxs">{info}</span> New Test Notice Title Update</Link>
+            <Link to="/notices/46055"><span className="rvt-m-right-xxs">{info}</span> Two Step for ALL</Link>
           </HeaderMenu>
           <Link to="/maintenance">Maintenance</Link>
           <Link to="/calendar">Calender</Link>
