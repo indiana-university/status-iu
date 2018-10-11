@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import 'rivet-uits/css/rivet.css'
 import { notices } from '../status-api'
-import {Container} from 'rivet-react'
+import { Container } from 'rivet-react'
 import { Notices, StatusMatrix } from "../components";
 
 export class Home extends Component {

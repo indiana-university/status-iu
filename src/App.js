@@ -1,9 +1,9 @@
 import React from 'react';
 import 'rivet-uits/css/rivet.css'
-import {Container, Header, HeaderMenu, HeaderNavigation} from 'rivet-react'
+import { Container, Header, HeaderMenu, HeaderNavigation } from 'rivet-react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import { Home, Calendar, Maintenance, Notice, Notices } from './pages'
-import {info} from "./icons";
+import { info } from "./icons";
 
 const App = () => (
   <Router basename={process.env.PUBLIC_URL}>

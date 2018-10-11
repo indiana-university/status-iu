@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import 'rivet-uits/css/rivet.css'
 import { Table } from 'rivet-react'
 import { Link } from 'react-router-dom'
-import {groups, services, notices} from '../status-api'
+import { groups, services, notices } from '../status-api'
 import './StatusMatrix.css'
-import {checkmark, chevronDown, chevronRight, rss, exclamation, minus, info} from '../icons'
+import { checkmark, chevronDown, chevronRight, rss, exclamation, minus, info } from '../icons'
 
 
 export class StatusMatrix extends Component {

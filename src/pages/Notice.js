@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import 'rivet-uits/css/rivet.css'
 import { Badge, Row, Col, Panel } from 'rivet-react'
-import {checkmark, exclamation, info, minus} from "../icons";
+import { checkmark, exclamation, info, minus } from "../icons";
 
 export class Notice extends Component {
 

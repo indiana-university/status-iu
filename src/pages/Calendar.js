@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import 'rivet-uits/css/rivet.css'
 import { Table, Container, Col, Row } from 'rivet-react'
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export class Calendar extends Component {
 
