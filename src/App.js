@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { AppHeader } from './components';
+import { AppHeader, Navigation } from './components';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <AppHeader />
+        <Navigation />
       </div>
     );
   }
