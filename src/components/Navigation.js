@@ -1,6 +1,6 @@
 import React from "react";
 import { List } from "rivet-react";
-import { Dropdown } from "./Dropdown"
+import { Dropdown } from './index';
 
 export const Navigation = () => (
   <div className="siu-wrapper">
