@@ -1,6 +1,7 @@
-import React, { Component } from "react";
-import { AppHeader, Navigation } from './components';
-import { Container, Footer } from "rivet-react";
+import React, { Component } from 'react';
+import { AppHeader, Home, Navigation } from '.';
+import { Footer } from 'rivet-react';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 class App extends Component {
   render() {
@@ -8,9 +9,11 @@ class App extends Component {
       <div className="App">
         <AppHeader />
         <Navigation />
-        <main id="main-content">
-          <Container width="junior" center></Container>
-        </main>
+        <BrowserRouter>
+          <main id="main-content">
+            <Route path="/" exact component={Home} />
+          </main>
+        </BrowserRouter>
         <Footer>
           <a href="/privacy">Privacy Policy</a>
           <a href="https://accessibility.iu.edu/" target="_blank" rel="noopener noreferrer">Accessibility help</a>
