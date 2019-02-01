@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppHeader, Home, Navigation } from './components';
+import { AppHeader, Home, Navigation } from '.';
 import { Footer } from 'rivet-react';
 import { BrowserRouter, Route } from 'react-router-dom';
 

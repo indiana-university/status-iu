@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Col, Container, List, Row, Table } from 'rivet-react';
+import { Col, Container, List, Row, Table } from 'rivet-react';
 import { CaratDown, IconDanger, IconMaintenance, IconSuccess, IconWarning } from '../icons';
 
 export class Home extends Component {
@@ -77,10 +77,10 @@ export class Home extends Component {
                             <tbody>
                                 <tr className="rvt-box__row">
                                     <th scope="row" width="400">
-                                        <Button type="button" className="siu-group-header" data-group="authentication" aria-expanded={ false }>
+                                        <button type="button" className="siu-group-header" data-group="authentication" aria-expanded="false">
                                             <span className="siu-group-header__icon rvt-m-right-xs"><CaratDown /></span>
                                             <span> Authentication</span>
-                                        </Button>
+                                        </button>
                                     </th>
                                     <td className="siu-matrix__campus-status siu-matrix__campus-status--success">{ IconSuccess }</td>
                                     <td className="siu-matrix__campus-status siu-matrix__campus-status--success">{ IconSuccess }</td>
