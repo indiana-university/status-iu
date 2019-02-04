@@ -1,13 +1,15 @@
 import React from "react";
-import { Header, HeaderNavigation } from "rivet-react";
-import { IconHelp } from "../icons";
+import { BrowserRouter, Link } from 'react-router-dom';
+import { TridentHeader } from '../icons';
 
 export const AppHeader = () => (
-  <Header title="UITS | Status.IU" className="rvt-header--light rvt-text-bold">
-    <HeaderNavigation>
-      <a href="https://kb.iu.edu/d/abxl" className="rvt-button">
-        {IconHelp} <span className="rvt-m-left-xs">Get help</span>
-      </a>
-    </HeaderNavigation>
-  </Header>
+  <header className="rvt-header rvt-header--light" role="banner">
+    <a className="rvt-skip-link" href="#main-content">Skip to content</a>
+    <div className="rvt-header__trident">{ TridentHeader }</div>
+    <span className="rvt-header__title">
+      <BrowserRouter>
+        <Link to="/">UITS | <span className="rvt-text-bold">Status.IU</span></Link>
+      </BrowserRouter>
+    </span>
+</header>
 );

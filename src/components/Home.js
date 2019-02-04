@@ -12,12 +12,12 @@ class Home extends Component {
                 <Row>
                     <Col md={8}>
                         <div className="rvt-box rvt-box--card siu-current-status">
-                            <div className="rvt-p-lr-sm rvt-p-tb-md">
-                                <h1 className="rvt-ts-md rvt-lh-title rvt-text-bold">Current status</h1>
+                            <div className="rvt-p-lr-md rvt-p-tb-md">
+                                <h1 className="rvt-ts-lg rvt-lh-title rvt-text-bold">Current status</h1>
                                 <p className="rvt-m-top-xxs rvt-m-bottom-remove siu-subtle-text">Updates for UITS systems and services.</p>
                             </div>
                             <List className="rvt-plain-list">
-                                <li className="rvt-box__row">
+                                <li className="rvt-box__row rvt-p-lr-md">
                                     <div className="siu-notice rvt-p-tb-xs">
                                         <div className="siu-notice__icon siu-notice__icon--danger">{ IconDanger }</div>
                                         <div className="siu-notice__body">
@@ -25,7 +25,7 @@ class Home extends Component {
                                         </div>
                                     </div>
                                 </li>
-                                <li className="rvt-box__row">
+                                <li className="rvt-box__row rvt-p-lr-md">
                                     <div className="siu-notice rvt-p-tb-xs">
                                         <div className="siu-notice__icon siu-notice__icon--danger">{ IconDanger }</div>
                                         <div className="siu-notice__body">
@@ -33,7 +33,7 @@ class Home extends Component {
                                         </div>
                                     </div>
                                 </li>
-                                <li className="rvt-box__row">
+                                <li className="rvt-box__row rvt-p-lr-md">
                                     <div className="siu-notice rvt-p-tb-xs">
                                         <div className="siu-notice__icon siu-notice__icon--warning">{ IconWarning }</div>
                                         <div className="siu-notice__body">
@@ -48,7 +48,7 @@ class Home extends Component {
             </Container>
             {/* Rewrite as new component */}
             <Container width="junior" center margin={{ bottom: 'lg', top: 'lg' }} className="rvt-m-tb-xxl-md-up">
-                <div className="rvt-p-left-sm">
+                <div className="rvt-p-left-xs">
                     <List className="siu-key">
                         <li className="siu-key__item"><span className="siu-key__icon siu-key__icon--danger">{ IconDanger }</span> Alert</li>
                         <li className="siu-key__item"><span className="siu-key__icon siu-key__icon--warning">{ IconWarning }</span> Ongoing Issue</li>
