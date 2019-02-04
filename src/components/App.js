@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { AppHeader, Home, Navigation } from '.';
-import { Footer } from 'rivet-react';
+import { AppHeader, Navigation } from '../components/index';
+import Home from '../components/Home';
 import { BrowserRouter, Route } from 'react-router-dom';
+import { Footer } from 'rivet-react';
+
 
 class App extends Component {
   render() {
@@ -20,7 +22,7 @@ class App extends Component {
         </Footer>
       </div>
     );
-  }
+  };
 }
 
 export default App;
