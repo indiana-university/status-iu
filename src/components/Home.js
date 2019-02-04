@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { toggle } from '../actions';
 import { Col, Container, List, Row, Table } from 'rivet-react';
 import { CaratDown, IconDanger, IconMaintenance, IconSuccess, IconWarning } from '../icons';
 
-export class Home extends Component {
+class Home extends Component {
     render() {
-        return <React.Fragment>
-            {/* Rewrite as component */}
+        return (<React.Fragment>
             <Container width="junior" center>
                 <Row>
                     <Col md={8}>
@@ -77,7 +78,7 @@ export class Home extends Component {
                             <tbody>
                                 <tr className="rvt-box__row">
                                     <th scope="row" width="400">
-                                        <button type="button" className="siu-group-header" data-group="authentication" aria-expanded="false">
+                                        <button type="button" className="siu-group-header" data-group="authentication" onClick={ () => this.props.toggle(this.props.visible, this.props.expanded, this.props.hidden)} aria-expanded={ this.props.expanded }>
                                             <span className="siu-group-header__icon rvt-m-right-xs"><CaratDown /></span>
                                             <span> Authentication</span>
                                         </button>
@@ -92,7 +93,7 @@ export class Home extends Component {
                                     <td className="siu-matrix__campus-status siu-matrix__campus-status--success">{ IconSuccess }</td>
                                     <td className="siu-matrix__campus-status siu-matrix__campus-status--success">{ IconSuccess }</td>
                                 </tr>
-                                <tr className="rvt-box__row siu-matrix__group-child" data-group-child="authentication" hidden={ true }>
+                                <tr className="rvt-box__row siu-matrix__group-child" data-group-child="authentication" hidden={ this.props.hidden } style={{ display: this.props.visible }}>
                                     <th scope="row">
                                         <Link to="/">Fake child element</Link>
                                     </th>
@@ -111,6 +112,12 @@ export class Home extends Component {
                     </div>
                 </div>
             </Container>
-        </React.Fragment>
-    }
+        </React.Fragment>);
+    };
 }
+
+const mapStateToProps = state => {
+    return { visible: state.visible, expanded: state.expanded, hidden: state.hidden };
+};
+
+export default connect(mapStateToProps,{ toggle })(Home);
