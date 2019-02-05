@@ -1,0 +1,69 @@
+{
+  "auth": {
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOiIxOTE1NTQ0NjQzIiwidXNlcl9pZCI6IjEiLCJ1c2VyX25hbWUiOiJqb2huZG9lIn0.9uerDlhPKrtBrMMHuRoxbJ5x0QA7KOulDEHx9DKXpnQ"
+  },
+  "campuses": [
+    {
+      "id": 1,
+      "name": "Bloomington",
+      "abbreviation": "IUB"
+    },
+    {
+      "id": 2,
+      "name": "Indianapolis",
+      "abbreviation": "IUPUI"
+    },
+    {
+      "id": 3,
+      "name": "Columbus",
+      "abbreviation": "IUPUC"
+    },
+    {
+      "id": 4,
+      "name": "Richmond",
+      "abbreviation": "IUE"
+    },
+    {
+      "id": 5,
+      "name": "Fort Wayne",
+      "abbreviation": "IUFW"
+    },
+    {
+      "id": 6,
+      "name": "Kokomo",
+      "abbreviation": "IUK"
+    },
+    {
+      "id": 7,
+      "name": "Gary",
+      "abbreviation": "IUN"
+    },
+    {
+      "id": 8,
+      "name": "South Bend",
+      "abbreviation": "IUSB"
+    },
+    {
+      "id": 9,
+      "name": "New Albany",
+      "abbreviation": "IUS"
+    }
+  ],
+  "groups": [
+    {
+      "id": 4,
+      "name": "Enterprise Applications",
+      "description": "description"
+    }
+  ],
+  "services": [
+    {
+      "id": 23,
+      "name": "IU Directory",
+      "url": "https://kb.iu.edu/d/axnd",
+      "groupId": 4,
+      "description": "For student, faculty, staff, and departmental contact information for all IU campuses, search the IU Directory. The directory contains interactive features such as self-updates that are live within 24 hours, campus maps with building details, links to calling instructions and campus telephone services in the Knowledge Base, and more.",
+      "reportStatus": true
+    }
+  ]
+}
